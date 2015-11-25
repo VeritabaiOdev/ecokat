@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="menu.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+   <f:view contentType="text/html" locale="#{language.localeCode}" beforePhase="#{loginView.checkLogin}"/>
+    <ui:define name="pageContent">
+        <h:form id="form" rendered="#{loginView.kullaniciAdmin}">
+
+            <p:growl id="growl" showDetail="true" sticky="true" />  
+
+            <p:panel id="tanimPanel"  header="#{pf.menu_kullaniciTanimlama}" >
+                <p:panelGrid columns="2"  >
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTC}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.tc}"/>
+                    
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciAdi}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.kullanici_adi}"/>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciIsim}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.isim}"/>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciSoyAdi}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.soyisim}"/>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTurId}:"/>
+                    <p:selectOneMenu id="kullanicitur" value="#{kullaniciViewBean.kullanici.tur}" converter="kullaniciTuruConverter" >
+
+                        <f:selectItems value="#{kullaniciViewBean.kullaniciTuruList}" var="tur" itemLabel="#{tur.tur_adi}" itemValue="#{tur}" />
+
+                    </p:selectOneMenu>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciBaskanlik}:"/>
+                    <p:selectOneMenu id="baskanlik" value="#{kullaniciViewBean.kullanici.baskanlik}" converter="baskanlikConverter" >
+
+                        <f:selectItems value="#{kullaniciViewBean.baskanlikList}" var="bas" itemLabel="#{bas.baskanlikAdi}" itemValue="#{bas}" />
+
+                    </p:selectOneMenu>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciEmail}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.email}"/>
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTelefon}:"/>
+                    <p:inputText value="#{kullaniciViewBean.kullanici.telefon}"/>
+
+                </p:panelGrid>
+
+                <p:commandButton value="#{pf.kullaniciTanimlama_kullaniciEkle}"  actionListener="#{kullaniciViewBean.kaydet()}" update="growl,kullanici_datatable" process="tanimPanel">
+                </p:commandButton>
+
+            </p:panel>
+
+            <p:panel id="kullaniciListPanel" header="Kullanıcı Listesi">
+                <p:dataTable id="kullanici_datatable" var="obj" value="#{kullaniciViewBean.kullaniciList}" 
+                             rows="10"
+                             selectionMode="single" rowKey="#{obj.kullanici_id}" selection="#{kullaniciViewBean.selectedkullanici}"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,25,100"
+                             rowIndexVar="j">
+
+                    <p:column headerText="#{pf.Sira}" sortBy="#{j}" style="width: 20px">
+                        <h:outputText value="#{j+1}" />
+                    </p:column>
+                    
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciId}" sortBy="#{obj.kullanici_id}" filterBy="#{obj.kullanici_id}" filterMatchMode="contains" style="width: 100px">
+                        <h:outputText value="#{obj.kullanici_id}" />
+                    </p:column>
+                    
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciDurum}" sortBy="#{obj.durum}" filterBy="#{obj.durum}" filterMatchMode="contains">
+                        <p:outputLabel value="#{(obj.durum==1) ? 'Aktif' : 'Pasif'}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciTC}" sortBy="#{obj.tc}" filterBy="#{obj.tc}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.tc}" />
+                    </p:column>
+                    
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciAdi}" sortBy="#{obj.kullanici_adi}" filterBy="#{obj.kullanici_adi}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.kullanici_adi}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciAdi}" sortBy="#{obj.isim}" filterBy="#{obj.isim}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.isim}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciTurId}" sortBy="#{obj.tur.tur_adi}" filterBy="#{obj.tur.tur_adi}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.tur.tur_adi}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciBaskanlik}" sortBy="#{obj.baskanlik.baskanlikAdi}" filterBy="#{obj.baskanlik.baskanlikAdi}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.baskanlik.baskanlikAdi} - #{obj.baskanlik.yoneticiAdi}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciEmail}" sortBy="#{obj.email}" filterBy="#{obj.email}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.email}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciTelefon}" sortBy="#{obj.telefon}" filterBy="#{obj.telefon}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.telefon}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciOlusturmaZamani}" sortBy="#{obj.olusturma_zamani}" filterBy="#{obj.olusturma_zamani}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.olusturma_zamani}" />
+                    </p:column>
+
+                    <p:column headerText="#{pf.kullaniciTanimlama_kullaniciGuncellemeZamani}" sortBy="#{obj.guncelleme_zamani}" filterBy="#{obj.guncelleme_zamani}" filterMatchMode="contains">
+                        <h:outputText value="#{obj.guncelleme_zamani}" />
+                    </p:column>
+
+                    <p:column style="width:32px;text-align: center">
+                        <p:commandButton update=":form:guncellemePanel" process="kullanici_datatable"  icon="ui-icon-search" title="View" actionListener="#{kullaniciViewBean.panelgoster()}">
+                            <f:setPropertyActionListener value="#{obj}" target="#{kullaniciViewBean.selectedkullanici}" />
+                        </p:commandButton>
+                    </p:column>
+
+
+                </p:dataTable>
+            </p:panel>
+
+            <p:panel id="guncellemePanel"  header="#{pf.kullaniciTanimlama_kullaniciGuncelle}" visible="#{kullaniciViewBean.isGizle()}" >
+                <p:panelGrid columns="2" columnClasses="myPanelGridLeft,myPanelGridRight"  >
+
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTC}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.tc}" disabled="true"/>
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciAdi}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.kullanici_adi}" disabled="true"/>
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciDurum}:"/>
+                    <p:selectOneMenu id ="durum" value="#{kullaniciViewBean.selectedkullanici.durum}">
+                        
+                        <f:selectItem itemLabel="Aktif" itemValue="1" />
+                        <f:selectItem itemLabel="Pasif" itemValue="0" />
+                        
+                    </p:selectOneMenu>
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciAdi}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.isim}"/>
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciSoyAdi}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.soyisim}"/>
+                    
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTurId}:"/>
+                    <p:selectOneMenu id="kullaniciturguncelle" value="#{kullaniciViewBean.selectedkullanici.tur}" converter="kullaniciTuruConverter" >
+
+                        <f:selectItems value="#{kullaniciViewBean.kullaniciTuruList}" var="tur" itemLabel="#{tur.tur_adi}" itemValue="#{tur}" />
+
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciBaskanlik}:"/>
+                    <p:selectOneMenu id="baskanlikguncelle" value="#{kullaniciViewBean.selectedkullanici.baskanlik}" converter="baskanlikConverter" >
+
+                        <f:selectItems value="#{kullaniciViewBean.baskanlikList}" var="bas" itemLabel="#{bas.baskanlikAdi}" itemValue="#{bas}" />
+
+                    </p:selectOneMenu>
+                      
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciEmail}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.email}"/>
+                    <h:outputLabel value="#{pf.kullaniciTanimlama_kullaniciTelefon}:"/>
+                    <p:inputText value="#{kullaniciViewBean.selectedkullanici.telefon}"/>
+
+                </p:panelGrid>
+                <p:commandButton value="#{pf.kullaniciTanimlama_kullaniciGuncelle}"  actionListener="#{kullaniciViewBean.guncelle()}" update="growl,kullanici_datatable,guncellemePanel" process="guncellemePanel">
+                </p:commandButton>
+            </p:panel>
+
+
+        </h:form>
+        <h:form id="form2" rendered="#{!loginView.kullaniciAdmin}">
+            Yetkiniz yoktur
+        </h:form>
+    </ui:define>
+</ui:composition>
