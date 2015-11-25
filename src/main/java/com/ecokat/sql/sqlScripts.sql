@@ -33,7 +33,7 @@ USE `ecokat` ;
 CREATE TABLE IF NOT EXISTS `ecokat`.`category` (
   `category_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
-  `create_timw` DATETIME NULL,
+  `create_time` DATETIME NULL,
   `updte_time` DATETIME NULL,
   PRIMARY KEY (`category_id`))
 ENGINE = InnoDB;
@@ -93,7 +93,6 @@ CREATE TABLE IF NOT EXISTS `ecokat`.`user_type` (
   `user_type_name` VARCHAR(45) NULL,
   `create_time` DATETIME NULL,
   `update_time` DATETIME NULL,
-  `create_time` VARCHAR(45) NULL,
   PRIMARY KEY (`user_type_id`))
 ENGINE = InnoDB;
 
@@ -170,17 +169,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ecokat`.`favory`
+-- Table `ecokat`.`favorite`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ecokat`.`favory` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`favorite` (
   `user_id` INT NULL,
   `book_id` INT NULL,
   `create_time` DATETIME NULL,
   `update_time` DATETIME NULL,
   INDEX `fk_user_id_idx` (`user_id` ASC, `book_id` ASC),
   CONSTRAINT `fk_book_id`
-    FOREIGN KEY ()
-    REFERENCES `ecokat`.`book` ()
+    FOREIGN KEY (book_id)
+    REFERENCES `ecokat`.`book` (`book_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_id`
