@@ -18,19 +18,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema ecokat
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema ecokat
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `ecokat` DEFAULT CHARACTER SET utf8 ;
+USE `ecokat` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`category`
+-- Table `ecokat`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`category` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`category` (
   `category_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `create_timw` DATETIME NULL,
@@ -40,9 +40,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`book`
+-- Table `ecokat`.`book`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`book` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`book` (
   `book_id` INT NOT NULL,
   `name` VARCHAR(25) NULL,
   `author` VARCHAR(20) NULL COMMENT '						',
@@ -61,16 +61,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`book` (
   INDEX `fk_category_id_idx` (`category_id` ASC),
   CONSTRAINT `fk_category_id`
     FOREIGN KEY (`category_id`)
-    REFERENCES `mydb`.`category` (`category_id`)
+    REFERENCES `ecokat`.`category` (`category_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`rating`
+-- Table `ecokat`.`rating`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`rating` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`rating` (
   `book_id` INT NOT NULL,
   `count` INT NULL,
   `number` INT NULL,
@@ -79,16 +79,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`rating` (
   PRIMARY KEY (`book_id`),
   CONSTRAINT `fk_book_id`
     FOREIGN KEY (`book_id`)
-    REFERENCES `mydb`.`book` (`book_id`)
+    REFERENCES `ecokat`.`book` (`book_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user_type`
+-- Table `ecokat`.`user_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user_type` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`user_type` (
   `user_type_id` INT NOT NULL,
   `user_type_name` VARCHAR(45) NULL,
   `create_time` DATETIME NULL,
@@ -99,9 +99,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user`
+-- Table `ecokat`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`user` (
   `user_id` INT NOT NULL,
   `firs_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
@@ -118,16 +118,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   INDEX `fk_category_id_idx` (`user_type_id` ASC),
   CONSTRAINT `fk_category_id`
     FOREIGN KEY (`user_type_id`)
-    REFERENCES `mydb`.`user_type` (`user_type_id`)
+    REFERENCES `ecokat`.`user_type` (`user_type_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`comment`
+-- Table `ecokat`.`comment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`comment` (
   `book_id` INT NULL,
   `comment` VARCHAR(45) NULL,
   `create_time` DATETIME NULL,
@@ -135,16 +135,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
   INDEX `fk_book_id_idx` (`book_id` ASC),
   CONSTRAINT `fk_book_id`
     FOREIGN KEY (`book_id`)
-    REFERENCES `mydb`.`book` (`book_id`)
+    REFERENCES `ecokat`.`book` (`book_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`sale`
+-- Table `ecokat`.`sale`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sale` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`sale` (
   `user_id` INT NULL,
   `book_id` INT NULL,
   `name` VARCHAR(45) NULL,
@@ -158,21 +158,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`sale` (
   INDEX `fk_book_id_idx` (`book_id` ASC),
   CONSTRAINT `fk_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`user` (`user_id`)
+    REFERENCES `ecokat`.`user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_book_id`
     FOREIGN KEY (`book_id`)
-    REFERENCES `mydb`.`book` (`book_id`)
+    REFERENCES `ecokat`.`book` (`book_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`favory`
+-- Table `ecokat`.`favory`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`favory` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`favory` (
   `user_id` INT NULL,
   `book_id` INT NULL,
   `create_time` DATETIME NULL,
@@ -180,21 +180,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`favory` (
   INDEX `fk_user_id_idx` (`user_id` ASC, `book_id` ASC),
   CONSTRAINT `fk_book_id`
     FOREIGN KEY ()
-    REFERENCES `mydb`.`book` ()
+    REFERENCES `ecokat`.`book` ()
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_id`
     FOREIGN KEY (`user_id` , `book_id`)
-    REFERENCES `mydb`.`user` (`user_id` , `user_id`)
+    REFERENCES `ecokat`.`user` (`user_id` , `user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`comment`
+-- Table `ecokat`.`comment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
+CREATE TABLE IF NOT EXISTS `ecokat`.`comment` (
   `book_id` INT NULL,
   `comment` VARCHAR(45) NULL,
   `create_time` DATETIME NULL,
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`comment` (
   INDEX `fk_book_id_idx` (`book_id` ASC),
   CONSTRAINT `fk_book_id`
     FOREIGN KEY (`book_id`)
-    REFERENCES `mydb`.`book` (`book_id`)
+    REFERENCES `ecokat`.`book` (`book_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
