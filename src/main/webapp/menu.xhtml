@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html" locale="#{language.localeCode}" beforePhase="#{loginViewBean.checkLogin}">
+        <ui:include src="/logobar.xhtml" />
+        <h:body>
+            <ui:include src="/loginInfo.xhtml"/>
+            <div id="t_wrapper">
+                <div id="t_menu">
+                    <h:form  >
+                        <p:menubar  >
+                            <p:submenu label="#{pf.menu_tanimlamaIslemleri}" >
+                                <p:menuitem rendered="#{loginView.kullaniciAdmin}" value="#{pf.menu_projeTanimlama}" url="projeTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_baskanlikTanimlama}" url="baskanlikTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_projedurumTanimlama}" url="projedurumTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_kullaniciturleriTanimlamala}" url="kullaniciturTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_bilesenTanimlama}" url="bilesenTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_kullaniciTanimlama}" url="kullaniciTanimlama.xhtml"/>
+                                <p:menuitem value="#{pf.menu_projesorumluTanimlama}" url="projesorumluTanimlama.xhtml"/>
+                            </p:submenu>
+
+
+                            <p:submenu label="#{pf.menu_sorgulamaIslemleri}" >
+                                <p:menuitem value="#{pf.menu_baskanlikSorgulama}" url="baskanlikSorgulama.xhtml"/>
+                                <p:menuitem value="menu item2" url="kullaniciTanimlama.xhtml"/>
+                            </p:submenu>
+
+                        </p:menubar>
+                    </h:form>
+
+                    <div class="cleaner"></div>
+                </div>
+
+                <div id="t_main">
+                    <div class="content_box">
+                        <div style="width: 100%;">
+                            <ui:insert name="pageContent">
+                                <div style="margin-top: 13px; padding-left: 10px; padding-bottom: 15px; font-size: 25px; color: white; border-style: solid; border-color: white; border-radius: 15px;">
+                                    <br/>
+                                    #{pf.menu_hosgeldiniz}
+                                    <br/>
+                                </div>
+                            </ui:insert>
+                        </div>
+                        <div class="cleaner"></div>
+                    </div>
+                    <div class="cleaner"></div>
+                </div>
+                <div class="cleaner"></div>
+            </div> 
+            <ui:include src="/footer.xhtml"/>
+        </h:body>
+    </f:view>
+</html>
