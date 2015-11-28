@@ -5,13 +5,15 @@
  */
 package com.ecokat.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
  * @author atakanatak
  */
-public class User {
+public class User implements Serializable{
    
    
    private int user_id;
@@ -20,10 +22,29 @@ public class User {
    private String surName;
    private String address;
    private String telNo;
-   private String ulke;
+   private String country;
    private String password;
    private String mail;
+   private String birthDay; 
+   private Timestamp create_time;
+   private Timestamp update_time;
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
+   
     public Timestamp getCreate_time() {
         return create_time;
     }
@@ -39,9 +60,6 @@ public class User {
     public void setUpdate_time(Timestamp update_time) {
         this.update_time = update_time;
     }
-   private String birdthDay; 
-   private Timestamp create_time;
-   private Timestamp update_time;
    
     public int getUser_id() {
         return user_id;
@@ -91,14 +109,6 @@ public class User {
         this.telNo = telNo;
     }
 
-    public String getUlke() {
-        return ulke;
-    }
-
-    public void setUlke(String ulke) {
-        this.ulke = ulke;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -114,15 +124,6 @@ public class User {
     public void setMail(String mail) {
         this.mail = mail;
     }
-
-    public String getBirdthDay() {
-        return birdthDay;
-    }
-
-    public void setBirdthDay(String birdthDay) {
-        this.birdthDay = birdthDay;
-    }
-
 
 
 }

@@ -5,13 +5,14 @@
  */
 package com.ecokat.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  *
  * @author atakanatak
  */
-public class Favorite {
+public class Favorite implements Serializable{
     private int user_id;
     private int book_id;
     private Timestamp create_time;

@@ -5,13 +5,14 @@
  */
 package com.ecokat.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  *
  * @author peyloride
  */
-public class Book {
+public class Book implements Serializable {
     private int book_id;
     private String name;
     private String author;

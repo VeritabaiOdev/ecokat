@@ -5,13 +5,14 @@
  */
 package com.ecokat.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  *
  * @author atakanatak
  */
-public class Category {
+public class Category implements Serializable{
     
     private int category_id;
     private String name;

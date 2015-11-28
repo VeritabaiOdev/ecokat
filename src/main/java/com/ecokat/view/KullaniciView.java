@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tr.gov.eba.projeyonetim.view;
+/*package tr.gov.eba.projeyonetim.view;
 
 import java.io.Serializable;
 import tr.gov.eba.projeyonetim.entity.Kullanici;
@@ -24,6 +24,7 @@ import tr.gov.eba.projeyonetim.service.impl.RepoServiceImpl;
  *
  * @author okanb3
  */
+/*
 @ManagedBean(name = "kullaniciViewBean")
 @ViewScoped
  public class KullaniciView implements Serializable {
@@ -175,4 +176,4 @@ import tr.gov.eba.projeyonetim.service.impl.RepoServiceImpl;
         gizle = false;
     }
 
-}
+}*/

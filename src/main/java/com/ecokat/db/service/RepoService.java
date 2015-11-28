@@ -7,13 +7,13 @@ package com.ecokat.db.service;
 
 import java.util.Date;
 import java.util.List;
-import tr.gov.eba.projeyonetim.entity.Baskanlik;
-import tr.gov.eba.projeyonetim.entity.Bilesen;
-import tr.gov.eba.projeyonetim.entity.Kullanici;
-import tr.gov.eba.projeyonetim.entity.KullaniciTuru;
-import tr.gov.eba.projeyonetim.entity.ProjeDurum;
-import tr.gov.eba.projeyonetim.entity.Project;
-import tr.gov.eba.projeyonetim.entity.ProjeSorumlu;
+import com.ecokat.entity.Book;
+import com.ecokat.entity.Category;
+import com.ecokat.entity.Comment;
+import com.ecokat.entity.Favorite;
+import com.ecokat.entity.Rating;
+import com.ecokat.entity.Sale;
+import com.ecokat.entity.User;
 
 /**
  *
@@ -21,53 +21,11 @@ import tr.gov.eba.projeyonetim.entity.ProjeSorumlu;
  */
 public interface RepoService {
 
-    //Kullanıcı türü
-    public int kaydetKullaniciTuru(KullaniciTuru kullaniciTuru, Kullanici kullanici);
-
-    public List listeleKullaniciTurleriListesi();
-
-    public int guncelleKullaniciTuru(KullaniciTuru kullaniciTuru, Kullanici kullanici);
-
-    //Bilesen
-    public int kaydetBilesen(Bilesen bilesen,Kullanici kullanici);
-
-    //Baskanlik
-    public int kaydetBaskanlik(Baskanlik baskanlik);
-
-    public List listeleBaskanlik();
-
-    public int guncelleBaskanlik(Baskanlik baskanlik);
- 
-    public List listeleBaskanlik(String baskanlikAdi, String yoneticiAdi, Date olusturmaZamaniBaslangic, Date olusturmaZamaniBitis, int durum);
-
     //Kullanıcı
-    public int kaydetKullanici(Kullanici kullanici, Kullanici kullanici2);
+    public int registerUser(User user);
 
-    public List listeleKullaniciListesi();
+    public List listUser();
 
-    public int guncelleKullanici(Kullanici kullanici, Kullanici kullanici2);
-
-    //ProjeDurum
-    public int kaydetProjeDurum(ProjeDurum projeDurum, Kullanici kullanici);
-
-    public List listeleProjeDurumListesi();
-
-    public int guncelleProjeDurum(ProjeDurum projeDurum);
-
-  
-    //Proje
-    public int kaydetProje(Project proje);
-     
-    public List listeleProjeListesi();
-
-    public int guncelleProje(Project proje);
-    //projesorumlu
-    public int kaydetProjeSorumlu(ProjeSorumlu projesorumlu);
-
-    public List listeleProjeSorumlu();
-
-    public int guncelleProjeSorumlu(ProjeSorumlu projesorumlu);
-    //LoginView
-    public Kullanici getirKullanici (String kullaniciAdi);
+    public int updateUser(User user, User user2);
     
 }

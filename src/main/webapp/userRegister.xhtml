@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Ecokat User Registration</h1>
+
+	<h:form>
+           <p:growl id="growl" showDetail="true" sticky="true" />
+           
+	   <p:panel id="tanimPanel"  header="User Registration" >
+                    <p:panelGrid columns="2"  >
+                        <h:outputLabel value="Name:"/>
+                        <p:inputText value="#{userRegisterViewBean.user.name}"/>
+
+                        <h:outputLabel value="Surname:"/>
+                        <p:inputText value="#{userRegisterViewBean.user.surName}"/>
+                        
+                        <h:outputLabel for="pwd1" value="Password : *" />
+                        <p:password id="pwd1" value="#{userRegisterViewBean.user.password}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+
+                        <h:outputLabel for="pwd2" value="Re-Type Password : *" />
+                        <p:password id="pwd2" value="#{userRegisterViewBean.user.password}" feedback="false" label="Password 2" required="true"/>
+
+                        <h:outputLabel value="Mail"/>
+                        <p:inputText value="#{userRegisterViewBean.user.mail}"/>
+                        
+                        <h:outputLabel value="Address"/>
+                        <p:inputText value="#{userRegisterViewBean.user.address}"/>
+                        
+                        <h:outputLabel value="Telno"/>
+                        <p:inputText value="#{userRegisterViewBean.user.telNo}"/>
+                        
+                        <h:outputLabel value="Birth Date"/>
+                        <p:calendar id="cal" value="#{userRegisterViewBean.user.birthDay}" yearRange="c-100:c" navigator="true"/> 
+                               
+                        <h:outputLabel value="Country"/>
+                        <p:selectOneMenu id="country" value="#{userRegisterViewBean.user.country}" style="width:125px">
+                            <f:selectItem itemLabel="Select Country" itemValue="" />
+                            <f:selectItem itemLabel="Turkey" itemValue="Turkey" />
+                            <f:selectItem itemLabel="USA" itemValue="USA" />
+                            <f:selectItem itemLabel="Russia" itemValue="Russia" />
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+
+                    <p:commandButton value="Kaydet"  actionListener="#{userRegisterViewBean.kaydet()}" update="growl" process="tanimPanel"/>
+            </p:panel>
+	</h:form>
+
+</h:body>
+</html>
