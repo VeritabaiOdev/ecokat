@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Ecokat User Sign In</h1>
+
+	<h:form>
+           <p:growl id="growl" showDetail="true" sticky="true" />
+           
+	   <p:panel id="girisPanel"  header="User Sign In" >
+                    <p:panelGrid columns="2"  >
+                        <h:outputLabel value="Name:"/>
+                        <p:inputText value="#{SignInViewBean.user.name}"/>
+                        
+                        <h:outputLabel for="pwd1" value="Password : *" />
+                        <p:password id="pss1" value="#{SignInViewBean.user.password}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+
+
+                    </p:panelGrid>
+
+                    <p:commandButton value="Giris"  actionListener="#{SignInViewBean.giris()}" update="growl" process="girisPanel"/>
+            </p:panel>
+	</h:form>
+
+</h:body>
+</html>
