@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Ecokat Category Name</h1>
+
+	<h:form>          
+          <p:growl id="cName" showDetail="true" />
+          
+          <h3 style="margin-top: 0">Category List</h3>
+          <p:orderList value="#{categoryViewBean.categoryList}" var="category" controlsLocation="none" itemLabel="#{category}" itemValue="#{category}" />
+          <p:commandButton value="Submit" update="displayCategory" oncomplete="PF('categoryDialog').show()" style="margin-top:5px" />
+           
+          <p:orderList value="#{orderListView.themes}" var="theme" itemValue="#{theme}" converter="theme" controlsLocation="left" responsive="true">
+             <p:ajax event="select" listener="#{orderListView.onSelect}" update="msgs"/>
+             <p:ajax event="unselect" listener="#{orderListView.onUnselect}" update="msgs"/>
+             <p:ajax event="reorder" listener="#{orderListView.onReorder}" update="msgs"/>
+ 
+             <f:facet name="caption"> Available</f:facet>
+ 
+          </p:orderList>
+          <p:commandButton value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()" style="margin-top:5px" />
+
+	</h:form>
+
+</h:body>
+</html>

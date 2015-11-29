@@ -4,9 +4,11 @@ com/ecokat/db/service/RepoService.class
 com/ecokat/entity/Book.class
 com/ecokat/entity/Sale.class
 com/ecokat/db/DBConnectionManager.class
-com/ecokat/view/UserSignIn.class
 com/ecokat/entity/Comment.class
+com/ecokat/view/AuthorRegisterView.class
+com/ecokat/entity/Author.class
 com/ecokat/entity/Rating.class
+com/ecokat/view/SignInView.class
 com/ecokat/entity/Favorite.class
 com/ecokat/service/impl/RepoServiceImpl.class
 com/ecokat/entity/User.class
