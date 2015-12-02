@@ -2,6 +2,7 @@ com/ecokat/entity/Category.class
 com/ecokat/db/service/RepoService.class
 com/ecokat/view/UserRegisterView.class
 com/ecokat/entity/Book.class
+com/ecokat/view/CategoryView.class
 com/ecokat/entity/Sale.class
 com/ecokat/db/DBConnectionManager.class
 com/ecokat/entity/Comment.class

@@ -4,6 +4,7 @@
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/entity/Rating.java
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/db/service/RepoService.java
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/entity/Book.java
+/home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/view/CategoryView.java
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/view/KullaniciView.java
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/entity/Comment.java
 /home/peyloride/NetBeansProjects/ecokat/src/main/java/com/ecokat/entity/Favorite.java
