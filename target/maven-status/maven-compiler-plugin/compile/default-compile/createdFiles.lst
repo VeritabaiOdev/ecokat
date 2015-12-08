@@ -5,6 +5,7 @@ com/ecokat/entity/Book.class
 com/ecokat/view/CategoryView.class
 com/ecokat/entity/Sale.class
 com/ecokat/db/DBConnectionManager.class
+com/ecokat/view/AuthorListView.class
 com/ecokat/entity/Comment.class
 com/ecokat/entity/Author.class
 com/ecokat/view/AuthorRegisterView.class
