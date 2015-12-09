@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `ecokat`.`book` (
   `cost` DOUBLE NULL,
   `create_time` DATETIME NULL,
   `update_time` DATETIME NULL,
-  `image` BLOB NULL,
+  `image` VARCHAR(100) NULL,
   PRIMARY KEY (`book_id`),
   INDEX `fk_category_id_idx` (`category_id` ASC),
   INDEX `fk_author_book_id_idx` (`author_id` ASC),
