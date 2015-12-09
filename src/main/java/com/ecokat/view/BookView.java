@@ -149,7 +149,7 @@ public class BookView implements Serializable{
             out.write(buf, 0, len);
         is.close();
         out.close();
-        imagepath = path + "images/" + name;
+        imagepath = "images/" + name;
     }
    
     public void kaydet() throws SQLException{
