@@ -4,27 +4,11 @@
  * and open the template in the editor.
  */
 package com.ecokat.view;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import java.io.Serializable;
-import com.ecokat.entity.User;
-import javax.faces.bean.ManagedBean;
-import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-//import com.ecokat.db.service.ConverterService;
-import com.ecokat.db.service.RepoService;
-import com.ecokat.entity.Author;
 import com.ecokat.entity.Category;
 //import com.ecokat.entity.Baskanlik;
 //import com.ecokat.entity.KullaniciTuru;
-import com.ecokat.service.impl.RepoServiceImpl;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,7 +20,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 /**
  *
  * @author atakanatak
@@ -106,6 +89,7 @@ public class CategoryView implements Serializable{
                 
                 cat = new Category();
                 cat.setName(rs.getString("name"));
+                cat.setCategory_id(rs.getInt("category_id"));
                 catList.add(cat);
 
             }

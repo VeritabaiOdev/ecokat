@@ -5,7 +5,6 @@
  */
 package com.ecokat.entity;
 
-import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,7 +15,7 @@ import java.sql.Timestamp;
 public class Book implements Serializable {
     private int book_id;
     private String name;
-    private String author;
+    private int author_id;
     private String content;
     private Integer pageNumber;
     private String publish_date;
@@ -25,8 +24,8 @@ public class Book implements Serializable {
     private String publisher;
     private int counter;
     private int stock;
-    private int cost;
-    private InputStream image;
+    private double cost;
+    private String image;
     private Timestamp create_time;
     private Timestamp update_time;
 
@@ -44,14 +43,6 @@ public class Book implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getContent() {
@@ -134,22 +125,28 @@ public class Book implements Serializable {
         this.stock = stock;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
-    public InputStream getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(InputStream image) {
+    public void setImage(String image) {
         this.image = image;
     }
-    
-    
+
+    public int getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
+    }
     
 }

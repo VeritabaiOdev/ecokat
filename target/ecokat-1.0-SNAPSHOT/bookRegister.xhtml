@@ -10,48 +10,58 @@
 <h:head>
 </h:head>
 <h:body>
-	<h1>Ecokat User Registration</h1>
+	<h1>Ecokat Book Registration</h1>
 
 	<h:form>
            <p:growl id="growl" showDetail="true" sticky="true" />
            
-	   <p:panel id="tanimPanel"  header="User Registration" >
+	   <p:panel id="tanimPanel"  header="Book Registration" >
                     <p:panelGrid columns="2"  >
-                        <h:outputLabel value="Name:"/>
-                        <p:inputText value="#{userRegisterViewBean.user.name}"/>
+                        <h:outputLabel value="Book Name: "/>
+                        <p:inputText value="#{BookViewBean.book.name}"/>
 
-                        <h:outputLabel value="Surname:"/>
-                        <p:inputText value="#{userRegisterViewBean.user.surName}"/>
+                        <h:outputLabel value="Book Page Number: "/>
+                        <p:inputText value="#{BookViewBean.book.pageNumber}"/>
                         
-                        <h:outputLabel for="pwd1" value="Password : *" />
-                        <p:password id="pwd1" value="#{userRegisterViewBean.user.password}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                        <h:outputLabel value="Category :"/>
+                        <p:selectOneMenu id="category" value="#{BookViewBean.book.category_id}" >
 
-                        <h:outputLabel for="pwd2" value="Re-Type Password : *" />
-                        <p:password id="pwd2" value="#{userRegisterViewBean.user.password}" feedback="false" label="Password 2" required="true"/>
+                            <f:selectItems value="#{BookViewBean.categoryList}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat.category_id}" />
 
-                        <h:outputLabel value="Mail"/>
-                        <p:inputText value="#{userRegisterViewBean.user.mail}"/>
-                        
-                        <h:outputLabel value="Address"/>
-                        <p:inputText value="#{userRegisterViewBean.user.address}"/>
-                        
-                        <h:outputLabel value="Telno"/>
-                        <p:inputText value="#{userRegisterViewBean.user.telNo}"/>
-                        
-                        <h:outputLabel value="Birth Date"/>
-                        <p:calendar id="cal" value="#{userRegisterViewBean.user.birthDay}" yearRange="c-100:c" navigator="true"/> 
-                               
-                        <h:outputLabel value="Country"/>
-                        <p:selectOneMenu id="country" value="#{userRegisterViewBean.user.country}" style="width:125px">
-                            <f:selectItem itemLabel="Select Country" itemValue="" />
-                            <f:selectItem itemLabel="Turkey" itemValue="Turkey" />
-                            <f:selectItem itemLabel="USA" itemValue="USA" />
-                            <f:selectItem itemLabel="Russia" itemValue="Russia" />
                         </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Author :"/>
+                        <p:selectOneMenu id="author" value="#{BookViewBean.book.author_id}" >
+
+                            <f:selectItems value="#{BookViewBean.authorList}" var="aut" itemLabel="#{aut.author_name}" itemValue="#{aut.author_id}" />
+
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Content: "/>
+                        <p:inputTextarea value="#{BookViewBean.book.content}"/>
+                        
+                        <h:outputLabel value="Publishing Date: "/>
+                        <p:inputText value="#{BookViewBean.book.publish_date}"/>
+                        
+                        <h:outputLabel value="Language: "/>
+                        <p:inputText value="#{BookViewBean.book.language}"/>
+                        
+                        <h:outputLabel value="Publisher: "/>
+                        <p:inputText value="#{BookViewBean.book.publisher}"/>
+                        
+                        <h:outputLabel value="Stock: "/>
+                        <p:inputText value="#{BookViewBean.book.stock}"/>
+                        
+                        <h:outputLabel value="Cost: "/>
+                        <p:inputText value="#{BookViewBean.book.cost}"/>
+                        
+                        <h:outputLabel value="Image: "/>
+                        <p:fileUpload fileUploadListener="#{BookViewBean.fileUpload}" mode="advanced"
+                     update="growl" auto="true" sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                     </p:panelGrid>
 
-                    <p:commandButton value="Kaydet"  actionListener="#{userRegisterViewBean.kaydet()}" update="growl" process="tanimPanel"/>
+                    <p:commandButton value="Kaydet"  actionListener="#{BookViewBean.kaydet()}" update="growl" process="tanimPanel"/>
             </p:panel>
 	</h:form>
 
